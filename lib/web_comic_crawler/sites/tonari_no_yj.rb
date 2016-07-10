@@ -17,7 +17,9 @@ module WebComicCrawler
             image_url: image_url_list[i],
             description: description(url)
           }
-          WebComicCrawler::Models::Comic.create(params)
+          comic = WebComicCrawler::Models::Comic.new(params)
+          comic.authors.build({ name: authors[i] })
+          comic.save
         end
       end
 
