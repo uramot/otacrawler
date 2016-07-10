@@ -5,7 +5,6 @@ class ComicTest < Minitest::Test
     params = {
       title: 'ウェブ漫画',
       url: 'http://example.com/manga/webmanga',
-      author: ['漫画太郎'],
       image_url: 'http://example.com/webmanga.jpg',
       description: 'テスト用のマンガ'
     }
@@ -18,10 +17,6 @@ class ComicTest < Minitest::Test
 
   def test_url
     assert_equal 'http://example.com/manga/webmanga', @comic.url
-  end
-
-  def test_author
-    assert_equal ['漫画太郎'], @comic.author
   end
 
   def test_image_url

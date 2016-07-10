@@ -6,6 +6,10 @@ require "web_comic_crawler/sites/tonari_no_yj"
 require "web_comic_crawler/models/comic"
 require "web_comic_crawler/models/story"
 
+require "active_record"
+require "erb"
+
 module WebComicCrawler
-  # Your code goes here...
+  config = YAML.load(ERB.new(IO.read("database.yml")).result)
+  ActiveRecord::Base.establish_connection(config["db"]["development"])
 end

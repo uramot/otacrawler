@@ -14,7 +14,6 @@ module WebComicCrawler
           params = {
             url: url,
             title: titles[i],
-            author: authors[i],
             image_url: image_url_list[i],
             description: description(url)
           }
