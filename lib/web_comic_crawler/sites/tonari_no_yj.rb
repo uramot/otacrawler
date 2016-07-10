@@ -14,12 +14,11 @@ module WebComicCrawler
           params = {
             url: url,
             title: titles[i],
+            author: authors[i],
             image_url: image_url_list[i],
             description: description(url)
           }
-          comic = WebComicCrawler::Models::Comic.new(params)
-          comic.authors.build({ name: authors[i] })
-          comic.save
+          WebComicCrawler::Models::Comic.create(params)
         end
       end
 
