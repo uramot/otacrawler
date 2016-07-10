@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "crawler"
+require "web_comic_crawler"
 
-crawler = Crawler::Core.new
-crawler.run
+service = WebComicCrawler::Service.new
+service.start
