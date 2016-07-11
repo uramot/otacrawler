@@ -8,7 +8,7 @@ class TonariNoYJTest < Minitest::Test
   end
 
   def test_analyze
-    # assert @yj.analyze # This test is very slowly
+    assert @yj.analyze # This test is very slowly
   end
 
   def test_url_list

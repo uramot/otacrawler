@@ -47,8 +47,8 @@ module Otacrawler
       memoize :authors
 
       def image_url_list
-        pattern = "//figure[@class='home-manga-item-figure']"
-        comics = @collector.collect(pattern)
+        css = 'figure.home-manga-item-figure'
+        comics = items.map {|item| item.css(css) }
         comics.map do |comic|
           path = comic.css('img').first.attributes['src'].to_s
           File.join(@url, path)
@@ -92,11 +92,9 @@ module Otacrawler
       def create(comic, i)
         comic.image_url = image_url_list[i]
         comic.description = description(comic.url)
-        comic.save
         authors[i].each do |author|
           comic.authors.build({ name: author })
         end
-        comic.save
         stories(comic.url).each do |story|
           comic.stories.build(story)
         end
@@ -108,9 +106,15 @@ module Otacrawler
         create(comic, i)
       end
 
-      def item_body
-        pattern = "//div[@class='home-manga-item-body']"
+      def items
+        pattern = "//div[@class='home-manga-item-wrapper']"
         @collector.collect(pattern)
+      end
+      memoize :items
+
+      def item_body
+        css = 'div.home-manga-item-body'
+        items.map {|item| item.css(css) }
       end
       memoize :item_body
     end
