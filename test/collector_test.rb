@@ -4,7 +4,7 @@ class CollectorTest < Minitest::Test
   def setup
     @url = "http://www.tonarinoyj.jp"
     pattern = "//div[@class='home-manga-item-body']"
-    @collector = WebComicCrawler::Collector.new(@url)
+    @collector = Otacrawler::Collector.new(@url)
     @comics = @collector.collect(pattern)
   end
 
@@ -38,7 +38,7 @@ class CollectorTest < Minitest::Test
 
   def test_collect_comic_description
     url = File.join(@url, "manga/onepanman/")
-    collector = WebComicCrawler::Collector.new(url)
+    collector = Otacrawler::Collector.new(url)
     pattern = "//div[@class='single-story']"
     comics = collector.collect(pattern)
     description = comics[0].css('p').first.inner_text

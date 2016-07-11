@@ -1,6 +1,6 @@
 require "active_record"
 
-module WebComicCrawler
+module Otacrawler
   module Models
     class Writing < ActiveRecord::Base
       self.table_name = "writing"

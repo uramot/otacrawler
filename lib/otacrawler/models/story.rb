@@ -1,6 +1,6 @@
 require "active_record"
 
-module WebComicCrawler
+module Otacrawler
   module Models
     class Story < ActiveRecord::Base
       belongs_to :comics
