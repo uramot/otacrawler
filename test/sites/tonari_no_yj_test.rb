@@ -39,4 +39,10 @@ class TonariNoYJTest < Minitest::Test
 EOS
     assert_equal expect, description
   end
+
+  def test_story_titles
+    url = "http://www.tonarinoyj.jp/manga/onepanman"
+    titles = @yj.story_titles(url)
+    assert_equal "ワンパンマン : ", titles.first
+  end
 end
