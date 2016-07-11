@@ -8,7 +8,7 @@ class ComicTest < Minitest::Test
       image_url: 'http://example.com/webmanga.jpg',
       description: 'テスト用のマンガ'
     }
-    @comic = WebComicCrawler::Models::Comic.new(params)
+    @comic = Otacrawler::Models::Comic.new(params)
   end
 
   def test_title

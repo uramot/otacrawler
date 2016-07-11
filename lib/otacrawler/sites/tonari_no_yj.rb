@@ -1,6 +1,6 @@
 require "memoizable"
 
-module WebComicCrawler
+module Otacrawler
   module Sites
     class TonariNoYJ
       include Memoizable

@@ -1,4 +1,4 @@
-module WebComicCrawler
+module Otacrawler
   class Robot
     def run
       collector = Collector.new("http://www.tonarinoyj.jp")

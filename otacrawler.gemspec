@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'web_comic_crawler/version'
+require 'otacrawler/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "web_comic_crawler"
-  spec.version       = WebComicCrawler::VERSION
+  spec.name          = "otacrawler"
+  spec.version       = Otacrawler::VERSION
   spec.authors       = ["yuta-muramoto"]
   spec.email         = ["s1513114@u.tsukuba.ac.jp"]
 

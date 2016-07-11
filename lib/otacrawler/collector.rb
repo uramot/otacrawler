@@ -1,6 +1,6 @@
 require 'anemone'
 
-module WebComicCrawler
+module Otacrawler
   class Collector
     def initialize(url)
       @url = url
