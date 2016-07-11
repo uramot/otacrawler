@@ -19,7 +19,7 @@ class TonariNoYJTest < Minitest::Test
   end
 
   def test_authors
-    assert_equal "原作/ＯＮＥ　作画/村田雄介", @yj.authors[0]
+    assert_equal "原作/ＯＮＥ", @yj.authors[0][0]
   end
 
   def test_image_url

@@ -11,15 +11,18 @@ module WebComicCrawler
 
       def analyze
         url_list.each_with_index do |url, i|
-          params = {
-            url: url,
-            title: titles[i],
-            image_url: image_url_list[i],
-            description: description(url)
-          }
-          comic = WebComicCrawler::Models::Comic.new(params)
-          comic.authors.build({ name: authors[i] })
-          comic.save
+          params = { url: url, title: titles[i] }
+          comic = Models::Comic.new(params)
+          if comic.save
+            comic.image_url = image_url_list[i]
+            comic.description = description(url)
+            authors[i].each do |author|
+              comic.authors.build({ name: author })
+            end
+            comic.save
+          else
+            update(url, i)
+          end
         end
       end
 
@@ -50,6 +53,7 @@ module WebComicCrawler
         comics = collector.collect(pattern)
         comics.map do |comic|
           authors = comic.css('p').first.inner_text
+          authors.split(/[[:space:]]/)
         end
       end
       memoize :authors
@@ -72,6 +76,18 @@ module WebComicCrawler
         comic[0].css('p').first.inner_text
       rescue
         ""
+      end
+
+      private
+
+      def update(url, i)
+        comic = Models::Comic.find_by(url: url)
+        comic.image_url = image_url_list[i]
+        comic.description =  description(url)
+        authors[i].each do |author|
+          comic.authors.build({ name: author })
+        end
+        comic.save
       end
     end
   end
