@@ -64,13 +64,21 @@ module WebComicCrawler
         ""
       end
 
-      def story_titles(url)
+      def stories(url)
         collector = Collector.new(url)
-        pattern = "//div[@class='single-backnumber']"
+        pattern = "//div[@class='single-backnumber']/dl"
         stories = collector.collect(pattern)
-        titles = stories.first.css('dt')
-        titles.map do |title|
-          title.inner_text
+        p stories.first.css('dt').inner_text
+        stories.map do |story|
+          title = story.css('dt').inner_text
+          story.css('dd > li > a').map do |number|
+            {
+              title: title,
+              number: number.inner_text.to_i,
+              url: number.attributes["href"].to_s
+            }
+            title
+          end
         end
       end
 

@@ -42,7 +42,7 @@ EOS
 
   def test_story_titles
     url = "http://www.tonarinoyj.jp/manga/onepanman"
-    titles = @yj.story_titles(url)
-    assert_equal "ワンパンマン : ", titles.first
+    stories = @yj.stories(url)
+    assert_equal "ワンパンマン : ", stories
   end
 end
