@@ -103,7 +103,27 @@ module Otacrawler
 
       def update(url, i)
         comic = Models::Comic.find_by(url: url)
-        create(comic, i)
+        comic.image_url = image_url_list[i]
+        comic.description = description(url)
+        comic.save
+        update_author(url, i)
+        update_story(url, i)
+      end
+
+      def update_author(url, i)
+        comic = Models::Comic.find_by(url: url)
+        authors[i].each do |author|
+          comic.authors.build({ name: author })
+        end
+        comic.save
+      end
+
+      def update_story(url, i)
+        comic = Models::Comic.find_by(url: url)
+        stories(url).each do |story|
+          comic.stories.build(story)
+        end
+        comic.save
       end
 
       def items
