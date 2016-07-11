@@ -1,6 +1,6 @@
 require "active_record"
 
-module WebComicCrawler
+module Otacrawler
   module Models
     class Author < ActiveRecord::Base
       has_many :writing

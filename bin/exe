@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "web_comic_crawler"
+require "otacrawler"
 
-service = WebComicCrawler::Service.new
-service.start
+robot = Otacrawler::Robot.new
+robot.run

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TonariNoYJTest < Minitest::Test
   def setup
-    @yj = WebComicCrawler::Sites::TonariNoYJ.new
+    @yj = Otacrawler::Sites::TonariNoYJ.new
   end
 
   def test_analyze
