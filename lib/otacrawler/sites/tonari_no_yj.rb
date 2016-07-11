@@ -1,4 +1,5 @@
 require "memoizable"
+require 'uri'
 
 module Otacrawler
   module Sites
@@ -14,7 +15,7 @@ module Otacrawler
         url_list.each_with_index do |url, i|
           params = { url: url, title: titles[i] }
           comic = Models::Comic.new(params)
-          if comic.save
+          if comic.save # overlapping check
             create(comic, i)
           else
             update(url, i)
@@ -68,18 +69,22 @@ module Otacrawler
         collector = Collector.new(url)
         pattern = "//div[@class='single-backnumber']/dl"
         stories = collector.collect(pattern)
-        p stories.first.css('dt').inner_text
-        stories.map do |story|
-          title = story.css('dt').inner_text
-          story.css('dd > li > a').map do |number|
+        result = stories.map do |story|
+          unless story.css('dt').empty?
+            title = story.css('dt').first.inner_text
+          else
+            title = ""
+          end
+          story.css('li').map do |number|
+            path = number.css('a').first.attributes["href"].to_s
             {
-              title: title,
-              number: number.inner_text.to_i,
-              url: number.attributes["href"].to_s
+              url:    URI.join(@url, path).to_s,
+              title:  title,
+              number: number.inner_text.to_i
             }
-            title
           end
         end
+        result.flatten
       end
 
       private
@@ -87,8 +92,13 @@ module Otacrawler
       def create(comic, i)
         comic.image_url = image_url_list[i]
         comic.description = description(comic.url)
+        comic.save
         authors[i].each do |author|
           comic.authors.build({ name: author })
+        end
+        comic.save
+        stories(comic.url).each do |story|
+          comic.stories.build(story)
         end
         comic.save
       end
