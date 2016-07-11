@@ -9,7 +9,7 @@ class TonariNoYJTest < Minitest::Test
     assert @yj.analyze
   end
 
-  def test_usl_list
+  def test_url_list
     url = "http://www.tonarinoyj.jp/manga/onepanman/"
     assert_equal url, @yj.url_list.first
   end
@@ -19,7 +19,7 @@ class TonariNoYJTest < Minitest::Test
   end
 
   def test_authors
-    assert_equal "原作/ＯＮＥ　作画/村田雄介", @yj.authors[0]
+    assert_equal "原作/ＯＮＥ", @yj.authors[0][0]
   end
 
   def test_image_url
