@@ -7,6 +7,7 @@ module WebComicCrawler
 
       def initialize
         @url = "http://www.tonarinoyj.jp"
+        @collector = Collector.new(@url)
       end
 
       def analyze
@@ -14,12 +15,7 @@ module WebComicCrawler
           params = { url: url, title: titles[i] }
           comic = Models::Comic.new(params)
           if comic.save
-            comic.image_url = image_url_list[i]
-            comic.description = description(url)
-            authors[i].each do |author|
-              comic.authors.build({ name: author })
-            end
-            comic.save
+            create(comic, i)
           else
             update(url, i)
           end
@@ -27,10 +23,7 @@ module WebComicCrawler
       end
 
       def url_list
-        pattern = "//div[@class='home-manga-item-body']"
-        collector = Collector.new(@url)
-        comics = collector.collect(pattern)
-        comics.map do |comic|
+        item_body.map do |comic|
           path = comic.css('a').first.attributes["href"].to_s
           File.join(@url, path)
         end
@@ -38,20 +31,14 @@ module WebComicCrawler
       memoize :url_list
 
       def titles
-        pattern = "//div[@class='home-manga-item-body']"
-        collector = Collector.new(@url)
-        comics = collector.collect(pattern)
-        comics.map do |comic|
+        item_body.map do |comic|
           comic.css('h3').first.inner_text
         end
       end
       memoize :titles
 
       def authors
-        pattern = "//div[@class='home-manga-item-body']"
-        collector = Collector.new(@url)
-        comics = collector.collect(pattern)
-        comics.map do |comic|
+        item_body.map do |comic|
           authors = comic.css('p').first.inner_text
           authors.split(/[[:space:]]/)
         end
@@ -60,8 +47,7 @@ module WebComicCrawler
 
       def image_url_list
         pattern = "//figure[@class='home-manga-item-figure']"
-        collector = Collector.new(@url)
-        comics = collector.collect(pattern)
+        comics = @collector.collect(pattern)
         comics.map do |comic|
           path = comic.css('img').first.attributes['src'].to_s
           File.join(@url, path)
@@ -73,22 +59,32 @@ module WebComicCrawler
         collector = Collector.new(url)
         pattern = "//div[@class='single-story']"
         comic = collector.collect(pattern)
-        comic[0].css('p').first.inner_text
+        comic.first.css('p').first.inner_text
       rescue
         ""
       end
 
       private
 
-      def update(url, i)
-        comic = Models::Comic.find_by(url: url)
+      def create(comic, i)
         comic.image_url = image_url_list[i]
-        comic.description =  description(url)
+        comic.description = description(comic.url)
         authors[i].each do |author|
           comic.authors.build({ name: author })
         end
         comic.save
       end
+
+      def update(url, i)
+        comic = Models::Comic.find_by(url: url)
+        create(comic, i)
+      end
+
+      def item_body
+        pattern = "//div[@class='home-manga-item-body']"
+        @collector.collect(pattern)
+      end
+      memoize :item_body
     end
   end
 end
