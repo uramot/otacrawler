@@ -9,6 +9,11 @@ machine:
   post:
     - sudo service postgresql stop
 
+database:
+  post:
+    - mysql -u root < setup.sql
+    - mysql otacrawler -u root < otacrawler.sql
+
 dependencies:
   pre:
     - gem install bundler --pre
@@ -16,6 +21,9 @@ dependencies:
   override:
     - bundle install:
         timeout: 180
+
+  post:
+    - mysql
 
 test:
   override:

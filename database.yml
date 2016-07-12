@@ -9,6 +9,5 @@ db:
   development:
     adapter:  mysql2
     host:     localhost
-    username: s1513114
-    password: <%= ENV["DATABASE_PASSWORD"] %>
-    database: WebComicCrawler
+    username: root
+    database: otacrawler
