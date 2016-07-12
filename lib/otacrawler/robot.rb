@@ -1,8 +1,13 @@
 module Otacrawler
   class Robot
     def run
-      collector = Collector.new("http://www.tonarinoyj.jp")
-      collector.collect(%r[/manga/\w+/\Z])
+      sites.each do |site|
+        site.analyze
+      end
+    end
+
+    def sites
+      Otacrawler.sites.map {|site_class| site_class.new }
     end
   end
 end
