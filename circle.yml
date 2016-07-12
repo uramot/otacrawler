@@ -1,0 +1,22 @@
+machine:
+  timezone:
+    Asia/Tokyo
+
+  ruby:
+    version:
+      2.3.1
+
+  post:
+    - sudo service postgresql stop
+
+dependencies:
+  pre:
+    - gem install bundler --pre
+
+  override:
+    - bundle install:
+        timeout: 180
+
+test:
+  override:
+    - bundle exec rake test
