@@ -1,10 +1,10 @@
-require "memoizable"
+require "mem"
 require 'uri'
 
 module Otacrawler
   module Sites
-    class TonariNoYJ
-      include Memoizable
+    class TonariNoYJ < Base
+      include Mem
 
       def initialize
         @url = "http://www.tonarinoyj.jp"

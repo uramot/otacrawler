@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'anemone'
-  spec.add_dependency 'memoizable'
+  spec.add_dependency 'mem'
   spec.add_dependency 'activerecord'
   spec.add_dependency 'mysql2'
 
