@@ -1,8 +1,7 @@
-Otacrawler
+Otacrawler <img src="img/IMG_6837.JPG" align="right">
 ===
 
 Otacrawler is web comic crawler such as the Akihabara otaku.
-<img src="img/IMG_6837.JPG" align="right">
 
 ## Installation
 
@@ -24,9 +23,7 @@ Or install it yourself as:
 
 Run robot:
 
-```sh
-$ bin/otacrawler
-```
+    $ bin/otacrawler
 
 ## Development
 
