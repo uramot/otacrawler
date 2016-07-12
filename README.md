@@ -1,5 +1,5 @@
-Otacrawler [![Code Climate](https://codeclimate.com/github/yuta-muramoto/otacrawler/badges/gpa.svg)](https://codeclimate.com/github/yuta-muramoto/otacrawler) <img src="img/IMG_6837.JPG" align="right">
-===
+# Otacrawler [![Code Climate](https://codeclimate.com/github/yuta-muramoto/otacrawler/badges/gpa.svg)](https://codeclimate.com/github/yuta-muramoto/otacrawler) [![CircleCI](https://circleci.com/gh/yuta-muramoto/otacrawler/tree/test.svg?style=svg)](https://circleci.com/gh/yuta-muramoto/otacrawler/tree/test) <img src="img/IMG_6837.JPG" align="right">
+
 
 Otacrawler is web comic crawler such as the Akihabara otaku.
 
