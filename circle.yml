@@ -22,9 +22,6 @@ dependencies:
     - bundle install:
         timeout: 180
 
-  post:
-    - mysql
-
 test:
   override:
     - bundle exec rake test
