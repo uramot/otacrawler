@@ -10,7 +10,7 @@ machine:
     - sudo service postgresql stop
 
 database:
-  post:
+  override:
     - mysql -u root < setup.sql
     - mysql otacrawler -u root < otacrawler.sql
 
