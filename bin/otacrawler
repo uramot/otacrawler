@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "otacrawler"
+
+robot = Otacrawler::Robot.new
+robot.run

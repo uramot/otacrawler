@@ -1,0 +1,13 @@
+db:
+  production:
+    adapter:  mysql2
+    host:     localhost
+    username: xxxxxxxx
+    password: xxxxxxxx
+    database: xxxxxxxx
+
+  development:
+    adapter:  mysql2
+    host:     localhost
+    username: root
+    database: otacrawler
