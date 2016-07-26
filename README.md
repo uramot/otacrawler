@@ -25,7 +25,7 @@ Run robot:
 
 ```ruby
   require 'otacrawler'
-  robot = Otacrawler::Robot.new.run
+  Otacrawler::Robot.new.run
 ```
 
 ## ENV
