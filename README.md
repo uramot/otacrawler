@@ -23,7 +23,16 @@ Or install it yourself as:
 
 Run robot:
 
-    $ bin/otacrawler
+```ruby
+  require 'otacrawler'
+  robot = Otacrawler::Robot.new.run
+```
+
+## ENV
+
+```
+DATABASE_SETTING_PATH - Database setting file path. It formatted YAML.
+```
 
 ## Development
 
