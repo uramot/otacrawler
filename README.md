@@ -21,6 +21,22 @@ Or install it yourself as:
 
 ## Usage
 
+Setting database:
+```YAML
+# database.yml
+development:
+  adapter:  mysql2
+  host:     localhost
+  username: root
+  database: otacrawler
+
+production:
+  adapter:  mysql2
+  host:     xxxx
+  username: xxxx
+  database: otacrawler
+```
+
 Run robot:
 
 ```ruby
@@ -31,7 +47,7 @@ Run robot:
 ## ENV
 
 ```
-DATABASE_SETTING_PATH - Database setting file path. It formatted YAML.
+DATABASE_SETTING_PATH - Database setting file path. That file formatted YAML.
 ```
 
 ## Development
