@@ -48,6 +48,7 @@ Run robot:
 
 ```
 DATABASE_SETTING_PATH - Database setting file path. That file formatted YAML.
+OTACRAWLER_ENV        - Setting environment. This doesn't overrides the value of the environment variable RAILS_ENV.
 ```
 
 ## Development

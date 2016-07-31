@@ -5,7 +5,8 @@ require "active_record"
 
 module Otacrawler
   config = YAML.load(ERB.new(IO.read(ENV["DATABASE_SETTING_PATH"])).result)
-  ActiveRecord::Base.establish_connection(config["development"])
+  env = ENV["RAILS_ENV"] || ENV["OTACRAWLER_ENV"]
+  ActiveRecord::Base.establish_connection(config[env])
 
   class << self
     include Mem
