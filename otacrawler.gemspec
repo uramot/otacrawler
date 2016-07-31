@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'mem'
-  spec.add_dependency 'mysql2'
   spec.add_dependency 'anemone'
   spec.add_dependency 'activerecord'
 
@@ -28,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "minitest-reporters"
+  spec.add_development_dependency 'mysql2'
 end
